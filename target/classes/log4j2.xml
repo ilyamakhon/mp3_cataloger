@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<Configuration>   
+    <Appenders>
+        <RollingFile name="duplicates-log" fileName="target/logs/duplicates.log"
+                     filePattern="logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+            <PatternLayout>
+                <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="5 MB"/>
+            </Policies>
+        </RollingFile>
+        <RollingFile name="duplicates-checksum-log" fileName="target/logs/duplicates_checksum.log"
+                     filePattern="logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+            <PatternLayout>
+                <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="5 MB"/>
+            </Policies>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Logger name="duplicates-log" level="info" additivity="false">
+            <appender-ref ref="duplicates-log" level="info"/>>
+        </Logger>
+        <Logger name="duplicates-checksum-log" level="info" additivity="false">
+            <appender-ref ref="duplicates-checksum-log" level="info"/>
+        </Logger>
+    </Loggers>
+</Configuration>
